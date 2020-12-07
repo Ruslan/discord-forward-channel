@@ -1,0 +1,8 @@
+channels:
+  -
+    to: SOURCE_CHANNEL
+    from: TARGET_CAHNNEL
+auth:
+  bot_token: BOT_TOKEN
+  user_token: USER_TOKEN
+  user_cookie: USER_COOKIE
