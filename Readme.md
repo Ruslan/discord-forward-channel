@@ -1,3 +1,7 @@
+This application can repost all messages from any public discord channel to your server discord channel.
+
+No bot or announces permissions required on source channel. But for your server it uses bot api.
+
 1. Invite bot to your discord
 2. Check source channel id (last number from URL)
 3. Check target channel id (last number from URL)
