@@ -1,4 +1,5 @@
-require 'HTTParty'
+require 'rubygems'
+require 'httparty'
 require 'json'
 require 'pry'
 require 'yaml'
@@ -40,6 +41,7 @@ class DiscordRepost
 
   def call
     data = get_fresh
+    return unless get_fresh[0]
     @last = get_fresh[0]['id'] unless @last
     new_msg = data.select  { |x| x['id'].to_i > @last.to_i }
     new_msg_list = new_msg.map { |msg| msg_to_string(msg) }.reverse.join("\n")
