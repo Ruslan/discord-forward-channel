@@ -34,18 +34,17 @@ class DiscordRepost
     data = HTTParty.post(
       "https://discord.com/api/channels/#{@channel_to}/messages",
       headers: { 'Authorization' => "Bot #{@bot_token}", "Content-type" => "application/json" },
-      debug_output: $stdout,
       body: { content: msg }.to_json
     )
   end
 
   def call
     data = get_fresh
-    return unless get_fresh[0]
-    @last = get_fresh[0]['id'] unless @last
+    return unless data[0]
+    @last = data[0]['id'] unless @last
     new_msg = data.select  { |x| x['id'].to_i > @last.to_i }
     new_msg_list = new_msg.map { |msg| msg_to_string(msg) }.reverse.join("\n")
-    @last = get_fresh[0]['id']
+    @last = data[0]['id']
     @base_nonce = @last.to_i
     if new_msg_list.to_s.size > 0
       puts "send #{new_msg_list}"
